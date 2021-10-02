@@ -1,4 +1,69 @@
-# 김시온 [201840111] (JS)
+# 김시온 [201840111]
+---
+## [9월 15일]
+##### 오늘 배운 내용 요약
+
+### prop-types
+```
+작업하는 프로젝트의 규모가 커질 수록 생각지 못한 곳에서 에러가 발생하는 일이 잦아짐
+이를 방지하기 위한 방법으로, PropTypes를 활용하여 타입(type)을 확인하는 것이 대표적
+PropTypes는 부모로부터 전달받은 prop의 데이터 type을 검사
+자식 컴포넌트에서 명시해 놓은 데이터 타입과 부모로부터 넘겨받은 데이터 타입이 일치하지 않으면 콘솔에 에러 경고문이 띄워짐
+```
+
+### prop-types 종류
+```
+MyComponent.propTypes = {
+  // 리액트 요소
+  // <div>123</div> , <Component />
+  menu: PropTypes.element,
+  
+  // 컴포넌트 함수가 반환할 수 있는 모든 것(비추)
+  // <SomeComponent />, 123
+  description: PropTypes.node,
+  
+  // Message 클래스로 생성된 모든 객체
+  // new Messages() -> 참, new Car() -> 거짓
+  message: PropTypes.instanceOf(Message),
+  
+  // 배열에 포함된 값 중에서 하나를 만족
+  name: PropTypes.oneOf(["jake", "olivia"]),
+
+  // 배열에 포함된 타입 중에서 하나를 만족
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+
+  // 특정 타입만 포함하는 배열
+  // [1, 5, 7] -> 참, ['a', 'b'] -> 거짓
+  ages: PropTypes.arrayOf(PropTypes.number),
+
+  // 객체의 속성값 타입을 정의
+  // {color: 'red', weight: 123} -> 참
+  info: PropTypes.shape({
+    color: PropTypes.string,
+    weight: PropTypes.number
+  })
+
+  // 객체에서 모든 속성값의 타입이 같은 경우
+  // {prop1: 123, prop2: 456}
+  infos: PropTypes.objectOf(PropTypes.number)
+}
+```
+
+### state
+```
+props처럼 App 컴포넌트의 렌더링 결과물에 영향을 주는 데이터를 갖고 있는 객체
+props는 (함수 매개변수처럼) 컴포넌트에 전달되는 반면 state는 (함수 내에 선언된 변수처럼) 컴포넌트 안에서 관리
+props를 사용했는데도 state를 사용하는 이유는, 사용하는 쪽과 구현하는 쪽을 철저하게 분리시켜서 양쪽의 편의성을 각자 도모하는 것에 있다.
+```
+
+### State와 Props의 차이점
+```
+화면에 출력되는 내용은 완전히 똑같지만, props 데이터를 사용자에게 노출되는 부분에 직접 적는 것이 아니라 State를 통해 참조했다는 차이가 있다.
+사용자가 알 필요가 없는 데이터를 내부에서 은닉하는 것
+    즉, 캡슐화를 통해 코드를 리펙토링 하는 것이 좋은 사용성을 만드는 핵심
+```
+
+
 ---
 ## [9월 15일]
 ##### 오늘 배운 내용 요약
