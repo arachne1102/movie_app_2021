@@ -1,5 +1,61 @@
 # 김시온 [201840111]
 ---
+## [10월 6일]
+##### 오늘 배운 내용 요약
+
+### constructor()
+```
+constructor() 내부에서 setState()를 호출하면 안됨. 컴포넌트에 지역 state가 필요하다면 생성자 내에서 this.state에 초기 state 값을 할당
+ex)
+constructor(props) {
+  super(props);
+  // 여기서 this.setState()를 호출하면 안 됩니다!
+  this.state = { counter: 0 };
+  this.handleClick = this.handleClick.bind(this);
+}
+```
+
+### componentDidMount()
+```
+componentDidMount()는 컴포넌트가 마운트된 직후, 즉 트리에 삽입된 직후에 호출
+DOM 노드가 있어야 하는 초기화 작업은 이 메서드에서 이루어지면 됨
+외부에서 데이터를 불러와야 한다면, 네트워크 요청을 보내기 적절함
+
+이 메서드는 데이터 구독을 설정하기 좋음. 
+데이터 구독이 이루어졌다면, componentWillUnmount()에서 구독 해제 작업을 반드시 수행해야 함
+
+componentDidMount()에서 즉시 setState()를 호출하는 경우도 있는데,
+이로 인하여 추가적인 렌더링이 발생하지만, 브라우저가 화면을 갱신하기 전에 이루어짐
+이런 사용 방식은 성능 문제로 이어지기 쉬우므로 주의가 필요
+대부분의 경우, 앞의 방식을 대신하여 constructor() 메서드에서 초기 state를 할당할 수 있음
+하지만 모달(Modal) 또는 툴팁과 같이 렌더링에 앞서 DOM 노드의 크기나 위치를 먼저 측정해야 하는 경우 이러한 방식이 필요
+```
+
+### componentDidUpdate()
+```
+componentDidUpdate()는 갱신이 일어난 직후에 호출됨, 최초 렌더링에서는 호출되지 않음
+
+컴포넌트가 갱신되었을 때 DOM을 조작하기 위하여 이 메서드를 활용하면 좋음
+이전과 현재의 props를 비교하여 네트워크 요청을 보내는 작업도 이 메서드를 사용
+
+componentDidUpdate()에서 setState()를 즉시 호출할 수도 있지만, 위의 예시처럼 조건문으로 감싸지 않으면 무한 반복이 발생할 수 있다는 점에 주의
+추가적인 렌더링을 유발하여, 비록 사용자는 눈치채지 못할지라도 컴포넌트 성능에 영향을 미칠 수 있음
+상위에서 내려온 prop을 그대로 state에 저장하는 것은 좋지 않으며, 그 대신 prop을 직접 사용하는 것이 좋음
+
+컴포넌트에서 getSnapshotBeforeUpdate()를 구현한다면, 해당 메서드가 반환하는 값은 componentDidUpdate()에 세 번째 “snapshot” 인자로 넘겨지고, 반환값이 없다면 해당 인자는 undefined를 가짐
+```
+
+### componentWillUnmount()
+```
+componentWillUnmount()는 컴포넌트가 마운트 해제되어 제거되기 직전에 호출
+이 메서드 내에서 타이머 제거, 네트워크 요청 취소, componentDidMount() 내에서 생성된 구독 해제 등 필요한 모든 정리 작업을 수행
+
+이제 컴포넌트는 다시 렌더링되지 않으므로, componentWillUnmount() 내에서 setState()를 호출하면 안됨
+컴포넌트 인스턴스가 마운트 해제되고 나면, 절대로 다시 마운트되지 않음
+```
+
+
+---
 ## [9월 29일]
 ##### 오늘 배운 내용 요약
 
