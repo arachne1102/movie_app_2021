@@ -1,4 +1,95 @@
 # 김시온 [201840111]
+
+---
+## [10월 13일]
+##### 오늘 배운 내용 요약
+
+# axios 기본에 대해서
+
+### REST API
+```
+REST API는 우리가 하고싶은 작업에 따라 다른 메서드로 요청할 수 있는 것
+
+REST API에는 대표적으로 다음과 같은 HTTP 메서드를 행위의 수단으로 이용
+    GET : 데이터 조회
+    POST : 데이터 등록 및 전송
+    PUT : 데이터 수정
+    DELETE : 데이터 삭제
+```
+
+### axios 설치하기
+```
+npm 사용하기
+$ npm install axios
+
+yarn 사용하기
+yarn add axios
+
+bower 사용하기
+$ bower install axios
+
+jsDeliver CDN 사용하기
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+unpkg CDN 사용하기
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+```
+
+### axios 사용하기
+```
+axios에서 Request Method를 사용하기 위해서는 axios에 .을 붙히며 소문자로 Req Method를 넣어주면 된다.
+그리고 해당 메서드의 파라미터에는 API의 주소를 넣는다.
+GET : axios.get(url[, config])
+POST : axios.post(url, data[, config])
+PUT : axios.put(url, data[, config])
+DELETE : axios.delete(url[, config])
+```
+
+### 일반적인 axios
+```
+일반적으로 우리는 axios의 4가지 기본 메서드를 사용하기 위해 지정해야할 것들이 있다.
+4가지 기본 Params
+    Method
+    Url
+    Data (optional)
+    Params (optional)
+이 4가지 방법을 axios에 알려줘야 한다.
+
+axios({
+    method: "get",
+    url: "url",
+    responseType: "type"
+}).then(function (response) {
+    // response Action
+});
+위와 같이 사용하는 것이 가장 기본적인 axios에 대한 사용법이다.
+만약 POST 메서드에서 data를 전송하기 위해서는 url 밑에 data Object를 추가하면 된다.
+```
+
+### 단축된 axios 메서드
+```
+단축된 axios의 메서드를 사용해서 위의 4가지 기본 파라미터를 생략하거나 간결하게 사용할 수 있다.
+
+1. axios.get()
+get 메서드를 단축된 속성으로 사용하려면 get 메서드를 사용하면 된다.
+get 메서드에는 2가지 상황이 크게 존재한다.
+단순 데이터(페이지 요청, 지정된 요청) 요청을 수행할 경우
+파라미터 데이터를 포함시키는 경우 (사용자 번호에 따른 조회)
+2가지 상황에 따라 params: {} 객체가 존재할지 안할지가 결정된다.
+
+2. axios.post()
+post 메서드에는 일반적으로 데이터를 Message Body에 포함시켜 보낸다.
+위에서 봤던 get 메서드에서 params를 사용한 경우와 비슷하게 수행된다.
+
+3. axios.put()
+put 메서드는 서버 내부적으로 get -> post 과정을 거치기 때문에 post 메서드와 비슷한 형태이다.
+
+4. axios.delete()
+delete 메서드에는 일반적으로 body가 비어있다.
+그래서 형태는 get과 비슷한 형태를 띄지만 한 번 delete 메서드가 서버에 들어가게 된다면 서버 내에서 삭제 process를 진행하게 된다.
+```
+
+
 ---
 ## [10월 6일]
 ##### 오늘 배운 내용 요약
